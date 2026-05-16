@@ -11,8 +11,8 @@ If importing photos takes more than zero clicks, the SD card stays in the camera
 Requires macOS and Python 3.9+ (the system `python3` from the Xcode Command Line Tools works).
 
 ```bash
-git clone https://github.com/yourname/mac-sd-photo-import.git
-cd mac-sd-photo-import
+git clone https://github.com/alecmandla/sd-import.git
+cd sd-import
 ./install.sh
 ```
 
