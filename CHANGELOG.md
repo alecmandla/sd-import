@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `paths.fallback_destination`: when the destination drive isn't mounted,
   photos are staged here and drained into the destination the next time it
   mounts (the launchd trigger already fires on every mount).
+  `behavior.drain_fallback = false` turns the automatic drain off.
 - Test suite (`tests/`, pytest) covering EXIF dates, destination paths, move
   and copy modes, the ledger, fallback and drain, and dry runs.
 - README troubleshooting section for macOS privacy (TCC) denials when the job

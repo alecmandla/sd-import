@@ -31,7 +31,7 @@ That's it. The installer:
 - RAW files (`.cr3`, `.nef`, `.arw`, etc.) go into a `RAW/` subfolder inside the month.
 - If a file with the same name and size already exists at the destination, it's treated as already imported and removed from the card. Different file, same name → counter appended to disambiguate.
 - Optional **copy mode** (`mode = "copy"`) leaves photos on the card and keeps a small ledger so the same photos aren't imported twice.
-- Optional **fallback destination**: if the destination is on an external drive that isn't plugged in, photos are staged in the fallback folder and moved to the drive automatically the next time it mounts.
+- Optional **fallback destination**: if the destination is on an external drive that isn't plugged in, photos are staged in the fallback folder and moved to the drive automatically the next time it mounts (or left in place with `drain_fallback = false`, if you'd rather move them yourself).
 - Ejects the card when done.
 - Pops a macOS notification when starting and finishing.
 

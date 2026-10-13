@@ -24,6 +24,12 @@ ledger = "~/.local/state/sd-import/imported.tsv"
 # the card (format the card in-camera when you're ready).
 mode = "move"
 
+# Move photos staged in fallback_destination into destination automatically
+# the next time it mounts. Turn off if you edit photos in the fallback folder
+# (e.g. in a photo library app that tracks file paths) and want to move them
+# yourself.
+drain_fallback = true
+
 # Eject the SD card after a successful import.
 eject_when_done = true
 

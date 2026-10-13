@@ -6,7 +6,8 @@ Watches for SD card mounts via launchd, finds photos in DCIM/, reads each
 photo's EXIF DateTimeOriginal, and moves (or copies) files into
 <destination>/YYYY/<month_folder>/. RAW files go into a RAW/ subfolder.
 If the destination is on a drive that isn't mounted, files go to an optional
-fallback folder and are drained into the destination the next time it mounts.
+fallback folder and (unless drain_fallback is off) are drained into the
+destination the next time it mounts.
 Ejects the card when finished. Logs to ~/Library/Logs/sd-import.log.
 """
 
@@ -37,6 +38,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     },
     "behavior": {
         "mode": "move",
+        "drain_fallback": True,
         "eject_when_done": True,
         "month_folder_format": "{month_num:02d}-{month_name}",
         "raw_subfolder": "RAW",
@@ -376,7 +378,8 @@ def main(argv: list[str] | None = None) -> int:
 
     status = destination_status(dest_root)
     dest_ok = status == "ok"
-    if dest_ok and fallback is not None and fallback.exists():
+    if (dest_ok and fallback is not None and fallback.exists()
+            and cfg["behavior"].get("drain_fallback", True)):
         drained = drain_fallback(fallback, dest_root, args.dry_run)
         if drained and not args.dry_run:
             log.info(f"Drained {drained} files from {fallback} into {dest_root}")

@@ -114,6 +114,19 @@ def test_unmounted_destination_uses_fallback_then_drains(sd, monkeypatch, tmp_pa
     assert inbox.is_dir()  # the fallback folder itself is kept
 
 
+def test_drain_can_be_turned_off(sd, monkeypatch, tmp_path, card):
+    drive = tmp_path / "Archive"
+    inbox = tmp_path / "inbox"
+    inbox.mkdir()
+    cfg = config(sd, drive, mode="copy", fallback=inbox, ledger=tmp_path / "ledger.tsv")
+    cfg["behavior"]["drain_fallback"] = False
+    run(sd, monkeypatch, cfg, [card])
+    drive.mkdir()
+    run(sd, monkeypatch, cfg, [])
+    assert files(drive) == []
+    assert len(files(inbox)) == 2
+
+
 def test_drain_drops_duplicates_already_on_destination(sd, monkeypatch, tmp_path, card):
     drive = tmp_path / "Archive"
     inbox = tmp_path / "inbox"
