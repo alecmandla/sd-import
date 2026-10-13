@@ -10,7 +10,20 @@
 # Dropbox) and you get automatic offsite backup.
 destination = "~/Pictures"
 
+# Optional. If the destination is on a drive that isn't mounted when a card
+# goes in, photos land here instead and are moved into the destination
+# (same YYYY/Month layout) the next time it mounts. Leave empty to disable.
+fallback_destination = ""
+
+# Copy mode only: record of files already imported, so a card that still
+# holds old photos doesn't re-import them.
+ledger = "~/.local/state/sd-import/imported.tsv"
+
 [behavior]
+# "move" removes photos from the card after import. "copy" leaves them on
+# the card (format the card in-camera when you're ready).
+mode = "move"
+
 # Eject the SD card after a successful import.
 eject_when_done = true
 

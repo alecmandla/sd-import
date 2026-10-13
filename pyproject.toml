@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mac-sd-photo-import"
-version = "0.1.0"
+version = "0.2.0"
 description = "Auto-import photos from SD card on macOS, organized by date"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -27,6 +27,9 @@ dependencies = [
     "tomli>=2.0; python_version<'3.11'",
 ]
 
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
 [project.scripts]
 sd-import = "sd_import:main"
 
@@ -36,3 +39,6 @@ Issues = "https://github.com/alecmandla/sd-import/issues"
 
 [tool.setuptools]
 py-modules = ["sd_import"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
